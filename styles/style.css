@@ -1,0 +1,370 @@
+/* Общие стили */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #fff;
+  color: #1d1b1e;
+}
+
+.container {
+  max-width: 428px;
+  margin: 0 auto;
+  padding: 24px 16px 16px;
+  position: relative;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.day-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.date {
+  font-size: 15px;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px 40px 12px 20px;
+  line-height: 1.5;
+  border-radius: 28px;
+  border: none;
+  background-color: #1d1b2014;
+  font-size: 16px;
+}
+
+.search input::placeholder {
+  color: #49454f;
+}
+
+.search img {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 1px solid #79747e;
+  background-color: #fff;
+}
+
+.tab {
+  flex: 1;
+  font-size: 14px;
+  padding: 12px 2px 12px 14px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #1d192b;
+}
+
+.tab:nth-child(2) {
+  border-left: 1px solid #79747e;
+  border-right: 1px solid #79747e;
+}
+
+.tab:nth-child(3) {
+  font-size: clamp(13px, 3.2vw, 14px);
+  padding-right: 6px;
+}
+
+.tab.active {
+  background-color: #e8def8;
+  position: relative;
+}
+
+.tab::before {
+  display: none;
+  width: 18px;
+}
+
+.active::before {
+  display: inline;
+}
+
+.tab:nth-child(1)::before {
+  background-image: url(../icons/selected-icon.svg);
+  content: "";
+  position: absolute;
+  left: 33px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.tab:nth-child(2)::before {
+  background-image: url(../icons/selected-icon.svg);
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.tab:nth-child(3)::before {
+  background-image: url(../icons/selected-icon.svg);
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-item {
+  color: #1d1b1e;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 16px;
+  background-color: rgba(103, 80, 164, 0.05);
+  border-radius: 16px;
+  align-items: center;
+  line-height: 1.6;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  color: #1d1b1e80;
+}
+
+.todo-date {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #49454f;
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-checkbox:checked {
+  border: none;
+  background-color: #d0bcff;
+  background-image: url("../icons/check_small.svg");
+  background-size: 24px 24px;
+}
+
+.floating-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  border: none;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #ebdef7;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.floating-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Popup */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background-color: #fff;
+  width: 100%;
+  max-width: 568px;
+  border-radius: 28px 28px 0px 0px;
+  padding: 16px;
+  position: relative;
+}
+
+.popup-content::before {
+  position: absolute;
+  content: "";
+  width: 32px;
+  height: 4px;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 100px;
+  background: #79747e;
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+  /* gap: 16px; */
+  margin-top: 36px;
+}
+
+.popup-content input[type="text"],
+.popup-content input[type="datetime-local"] {
+  font-family: "Roboto Flex";
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  line-height: 1.5;
+}
+
+.popup-content input[id="description"] {
+  margin-bottom: 16px;
+}
+
+.popup-content input::placeholder {
+  color: #49454f;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.reminder {
+  font-family: "Roboto Flex";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 48px;
+}
+
+.reminder input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 52px;
+  height: 32px;
+  padding: 2px 4px;
+  background-color: #bebebe7c;
+  border-radius: 16px;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkmark::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.reminder input[type="checkbox"]:checked + .checkmark {
+  background-color: #6750a4;
+}
+
+.reminder input[type="checkbox"]:checked + .checkmark::before {
+  transform: translateX(20px);
+  background-color: #ffffff;
+  background-image: url("../icons/Icon.svg");
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.submit-btn,
+.cancel-btn {
+  font-family: "Roboto Flex";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #6750a4;
+  color: white;
+}
+
+.cancel-btn {
+  background: none;
+  border: 1px solid #79747e;
+  color: #6750a4;
+}
+
+@media screen and (max-width: 390px) {
+  .tab {
+    padding: 12px 12px;
+  }
+
+  .tab.active::before {
+    display: none;
+  }
+}

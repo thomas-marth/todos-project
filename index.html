@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Flex:regular&family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div class="day-info">
+          <p class="day-name"></p>
+          <p class="date"></p>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Поиск" id="searchInput" />
+          <img src="./icons/search.svg" alt="Search Icon" />
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-filter="all">Все</button>
+          <button class="tab" data-filter="active">Активные</button>
+          <button class="tab" data-filter="completed">Завершенные</button>
+        </nav>
+      </header>
+
+      <ul class="todo-list" id="todoList"></ul>
+
+      <button id="addBtn" class="floating-btn">
+        <img src="./icons/edit.svg" alt="Add Task" />
+      </button>
+
+      <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <form id="todoForm">
+            <input
+              type="text"
+              id="description"
+              placeholder="Описание"
+              required
+            />
+            <input
+              type="datetime-local"
+              id="taskDate"
+              placeholder="Дата"
+              required
+            />
+            <label class="reminder">
+              Напомнить мне
+              <input type="checkbox" id="reminder" checked />
+              <span class="checkmark"></span>
+            </label>
+            <div class="popup-buttons">
+              <button type="submit" class="submit-btn">Добавить</button>
+              <button type="button" class="cancel-btn" id="cancelBtn">
+                Отмена
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
