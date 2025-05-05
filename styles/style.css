@@ -331,6 +331,7 @@ body {
   -moz-appearance: none;
 }
 
+.popup-content input[type="datetime-local"],
 .popup-content input.flatpickr-input,
 .popup-content input.form-control {
   margin-bottom: 20px;
