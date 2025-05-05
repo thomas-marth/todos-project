@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     month: "long",
   });
 
-  flatpickr(dateInput, {
+  const fp = flatpickr(dateInput, {
     enableTime: true,
     dateFormat: "Y-m-dTH:i",
     altInput: true,
