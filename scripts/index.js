@@ -30,12 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
+  let editingTodoId = null;
   let currentFilter = "all";
   let searchQuery = "";
 
   renderTodos();
 
   addBtn.addEventListener("click", () => {
+    editingTodoId = null;
+    popup.querySelector(".submit-btn").textContent = "Добавить";
     popup.classList.remove("hidden");
   });
 
@@ -60,37 +63,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const description = descriptionInput.value;
     const dateValue = dateInput.value;
-
-    if (!dateValue) {
-      dateInput._flatpickr.altInput.focus();
-      return;
-    }
-
-    if (!description) {
-      descriptionInput.focus();
-      return;
-    }
-
     const reminder = document.getElementById("reminder").checked;
 
-    console.log("Значение taskDate:", dateValue);
+    if (!description || !dateValue) {
+      return;
+    }
 
-    const newTodo = {
-      id: Date.now(),
-      description,
-      date: dateValue,
-      reminder,
-      completed: false,
-    };
+    if (editingTodoId !== null) {
+      const todo = todos.find((t) => t.id === editingTodoId);
 
-    todos.push(newTodo);
+      if (todo) {
+        todo.description = description;
+        todo.date = dateValue;
+        todo.reminder = reminder;
+      }
+    } else {
+      const newTodo = {
+        id: Date.now(),
+        description,
+        date: dateValue,
+        reminder,
+        completed: false,
+      };
+      todos.push(newTodo);
+    }
 
     localStorage.setItem("todos", JSON.stringify(todos));
-
     renderTodos();
+
+    editingTodoId = null;
     todoForm.reset();
     dateInput._flatpickr.clear();
     popup.classList.add("hidden");
+    popup.querySelector(".submit-btn").textContent = "Добавить";
   });
 
   tabs.forEach((tab) => {
@@ -110,6 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTodos() {
     todoList.innerHTML = "";
 
+    const oldMsg = document.getElementById("emptyMessage");
+    if (oldMsg) oldMsg.remove();
+
     const filteredTodos = todos.filter((todo) => {
       const matchesFilter =
         currentFilter === "all" ||
@@ -121,6 +129,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .includes(searchQuery);
       return matchesFilter && matchesSearch;
     });
+
+    if (filteredTodos.length === 0) {
+      const msg = document.createElement("p");
+      msg.id = "emptyMessage";
+      msg.className = "no-tasks-message";
+      msg.textContent = "Нет задач для отображения";
+      todoList.parentNode.insertBefore(msg, todoList.nextSibling);
+      return;
+    }
 
     filteredTodos.forEach((todo) => {
       const item = document.createElement("li");
@@ -142,8 +159,49 @@ document.addEventListener("DOMContentLoaded", () => {
         todo.date
       )}</span><p class="todo-description">${todo.description}</p>`;
 
-      item.appendChild(checkbox);
-      item.appendChild(textBlock);
+      const contentBlock = document.createElement("div");
+      contentBlock.classList.add("content-wrapper");
+      contentBlock.appendChild(checkbox);
+      contentBlock.appendChild(textBlock);
+
+      const editIcon = document.createElement("img");
+      editIcon.src = "./icons/edit.svg";
+      editIcon.classList.add("edit-icon");
+
+      const deleteIcon = document.createElement("img");
+      deleteIcon.src = "../icons/garbage-svgrepo-com.svg";
+      deleteIcon.classList.add("delete-icon");
+
+      const editBlock = document.createElement("div");
+      editBlock.classList.add("edit-wrapper");
+      editBlock.appendChild(editIcon);
+      editBlock.appendChild(deleteIcon);
+
+      deleteIcon.addEventListener("click", () => {
+        todos = todos.filter((t) => t.id !== todo.id);
+        localStorage.setItem("todos", JSON.stringify(todos));
+        renderTodos();
+      });
+
+      item.querySelector("click", () => {
+        contentBlock.style.display = "flex";
+      });
+
+      editIcon.addEventListener("click", () => {
+        editingTodoId = todo.id; // переходим в режим редактирования
+        popup.querySelector(".submit-btn").textContent = "Сохранить";
+
+        descriptionInput.value = todo.description;
+        dateInput._flatpickr.setDate(todo.date); // flatpickr.setDate
+        document.getElementById("reminder").checked = todo.reminder;
+
+        popup.classList.remove("hidden");
+      });
+
+      // item.appendChild(checkbox);
+      // item.appendChild(textBlock);
+      item.appendChild(contentBlock);
+      item.appendChild(editBlock);
       todoList.appendChild(item);
     });
   }

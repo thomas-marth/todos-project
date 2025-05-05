@@ -18,6 +18,7 @@ body {
 
 .container {
   max-width: 428px;
+  height: 100vh;
   margin: 0 auto;
   padding: 24px 16px 16px;
   position: relative;
@@ -145,9 +146,23 @@ body {
   height: 18px;
 }
 
+.no-tasks-message {
+  margin-top: 16px;
+  text-align: center;
+  color: #79747e;
+  font-style: italic;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 12px;
 }
 
@@ -155,6 +170,7 @@ body {
   color: #1d1b1e;
   font-weight: 400;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
   padding: 8px 16px;
@@ -167,6 +183,12 @@ body {
 .todo-item.completed {
   text-decoration: line-through;
   color: #1d1b1e80;
+}
+
+.content-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .todo-date {
@@ -197,7 +219,7 @@ body {
 }
 
 .floating-btn {
-  position: fixed;
+  position: absolute;
   right: 16px;
   bottom: 16px;
   border: none;
@@ -212,6 +234,42 @@ body {
 .floating-btn img {
   width: 24px;
   height: 24px;
+}
+
+.edit-wrapper {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-item:hover .edit-wrapper {
+  display: flex;
+}
+
+.edit-icon {
+  width: 34px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #ebdef7;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.edit-icon:hover {
+  transform: scale(1.2);
+}
+
+.delete-icon {
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #ebdef7;
+  width: 34px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
 }
 
 /* Popup */
