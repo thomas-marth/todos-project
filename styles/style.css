@@ -331,6 +331,12 @@ body {
   -moz-appearance: none;
 }
 
+.popup-content input.flatpickr-input,
+.popup-content input.form-control {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
 .popup-content input[id="description"] {
   margin-bottom: 16px;
 }
