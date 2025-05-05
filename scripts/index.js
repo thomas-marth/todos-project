@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msg.id = "emptyMessage";
       msg.className = "no-tasks-message";
       msg.textContent = "Нет задач для отображения";
-      todoList.parentNode.insertBefore(msg, todoList.nextSibling);
+      todoList.insertAdjacentElement("afterend", msg);
       return;
     }
 
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       editIcon.classList.add("edit-icon");
 
       const deleteIcon = document.createElement("img");
-      deleteIcon.src = "../icons/garbage-svgrepo-com.svg";
+      deleteIcon.src = "./icons/garbage-svgrepo-com.svg";
       deleteIcon.classList.add("delete-icon");
 
       const editBlock = document.createElement("div");
