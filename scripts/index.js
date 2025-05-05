@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     editingTodoId = null;
     popup.querySelector(".submit-btn").textContent = "Добавить";
     popup.classList.remove("hidden");
+    dateInput._flatpickr.placeholder = "Дата";
   });
 
   cancelBtn.addEventListener("click", () => {
@@ -63,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const description = descriptionInput.value;
     const dateValue = dateInput.value;
-    dateInput._flatpickr.style.placeholder = "Дата";
     const reminder = document.getElementById("reminder").checked;
 
     if (!description || !dateValue) {
