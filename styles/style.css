@@ -316,13 +316,19 @@ body {
 }
 
 .popup-content input[type="text"],
-.popup-content input[type="datetime-local"] {
+.popup-content input[type="datetime-local"],
+.popup-content input.flatpickr-input,
+.popup-content input.form-control {
   font-family: "Roboto Flex";
   font-size: 16px;
   padding: 16px;
   border-radius: 4px;
   border: 1px solid #ccc;
   line-height: 1.5;
+  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .popup-content input[id="description"] {
