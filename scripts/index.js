@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     locale: "ru",
   });
 
+  fp.altInput.placeholder = "Дата";
+
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let editingTodoId = null;
   let currentFilter = "all";
@@ -40,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     editingTodoId = null;
     popup.querySelector(".submit-btn").textContent = "Добавить";
     popup.classList.remove("hidden");
-    dateInput._flatpickr.placeholder = "Дата";
   });
 
   cancelBtn.addEventListener("click", () => {
