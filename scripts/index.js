@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const description = descriptionInput.value;
     const dateValue = dateInput.value;
+    dateInput._flatpickr.style.placeholder = "Дата";
     const reminder = document.getElementById("reminder").checked;
 
     if (!description || !dateValue) {
