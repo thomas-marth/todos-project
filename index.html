@@ -17,23 +17,25 @@
   </head>
   <body>
     <main class="container">
-      <header class="header">
-        <div class="day-info">
-          <p class="day-name"></p>
-          <p class="date"></p>
-        </div>
-        <div class="search">
-          <input type="text" placeholder="Поиск" id="searchInput" />
-          <img src="./icons/search.svg" alt="Search Icon" />
-        </div>
-        <nav class="tabs">
-          <button class="tab active" data-filter="all">Все</button>
-          <button class="tab" data-filter="active">Активные</button>
-          <button class="tab" data-filter="completed">Завершенные</button>
-        </nav>
-      </header>
+      <div>
+        <header class="header">
+          <div class="day-info">
+            <p class="day-name"></p>
+            <p class="date"></p>
+          </div>
+          <div class="search">
+            <input type="text" placeholder="Поиск" id="searchInput" />
+            <img src="./icons/search.svg" alt="Search Icon" />
+          </div>
+          <nav class="tabs">
+            <button class="tab active" data-filter="all">Все</button>
+            <button class="tab" data-filter="active">Активные</button>
+            <button class="tab" data-filter="completed">Завершенные</button>
+          </nav>
+        </header>
 
-      <ul class="todo-list" id="todoList"></ul>
+        <ul class="todo-list" id="todoList"></ul>
+      </div>
 
       <button id="addBtn" class="floating-btn">
         <img src="./icons/edit.svg" alt="Add Task" />

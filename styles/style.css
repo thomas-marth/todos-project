@@ -20,7 +20,9 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   max-width: 428px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 24px 16px 16px;
   position: relative;
