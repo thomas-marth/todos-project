@@ -374,17 +374,6 @@ body {
   color: #49454f;
 }
 
-.alt-placeholder::before {
-  content: attr(data-placeholder);
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-  pointer-events: none;
-  font-size: 16px;
-}
-
 .reminder {
   font-family: "Roboto Flex";
   display: flex;

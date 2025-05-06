@@ -20,18 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     month: "long",
   });
 
-  const fp = flatpickr(dateInput, {
+  flatpickr(dateInput, {
     enableTime: true,
     dateFormat: "Y-m-dTH:i",
     altInput: true,
     altFormat: "d F Y, H:i",
     time_24hr: true,
     locale: "ru",
-    defaultDate: null,
   });
-
-  fp.altInput.setAttribute("placeholder", "Дата");
-  fp.altInput.value = "";
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let editingTodoId = null;
@@ -69,12 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateValue = dateInput.value;
     const reminder = document.getElementById("reminder").checked;
 
+    if (!dateValue) {
+      const altInput = dateInput._flatpickr.altInput;
+      altInput.classList.add("input-error");
+      altInput.focus();
+      return;
+    }
+
     if (!description || !dateValue) {
       return;
     }
 
     if (editingTodoId !== null) {
-      const todo = todos.find((t) => t.id === editingTodoId);
+      const todo = todos.find((todo) => todo.id === editingTodoId);
 
       if (todo) {
         todo.description = description;
