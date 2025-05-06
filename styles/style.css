@@ -33,7 +33,7 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  background-color: #fff;
+  background-color: #6750a40d;
   color: #1d1b1e;
 }
 
@@ -45,6 +45,7 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   padding: 24px 16px 16px;
+  background-color: #fff;
   position: relative;
 }
 
