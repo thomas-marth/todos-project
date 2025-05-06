@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     altFormat: "d F Y, H:i",
     time_24hr: true,
     locale: "ru",
+    defaultDate: null,
   });
 
   fp.altInput.placeholder = "Дата";
