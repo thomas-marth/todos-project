@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   fp.altInput.placeholder = "Дата";
+  fp.altInput.value = "";
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let editingTodoId = null;
