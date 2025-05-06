@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     defaultDate: null,
   });
 
+  fp.altInput.removeAttribute("readonly");
   fp.altInput.placeholder = "Дата";
-  fp.altInput.value = "";
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let editingTodoId = null;
