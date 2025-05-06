@@ -22,16 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fp = flatpickr(dateInput, {
     enableTime: true,
-    dateFormat: "Y-m-dTH:i",
+    dateFormat: "Y-m-d\\TH:i",
     altInput: true,
     altFormat: "d F Y, H:i",
     time_24hr: true,
     locale: "ru",
-    defaultDate: null,
   });
 
-  fp.altInput.setAttribute("placeholder", "Дата");
-  fp.altInput.value = "";
+  fp.altInput.classList.add("alt-placeholder");
+  fp.altInput.setAttribute("data-placeholder", "Дата");
+
+  fp.altInput.addEventListener("input", () => {
+    if (fp.altInput.value) {
+      fp.altInput.classList.remove("alt-placeholder");
+    } else {
+      fp.altInput.classList.add("alt-placeholder");
+    }
+  });
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let editingTodoId = null;
