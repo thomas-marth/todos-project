@@ -396,6 +396,11 @@ body {
 
 .reminder input[type="checkbox"] {
   display: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .checkmark {
