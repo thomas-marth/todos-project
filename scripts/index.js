@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todoList.innerHTML = "";
 
     const oldMsg = document.getElementById("emptyMessage");
+
     if (oldMsg) oldMsg.remove();
 
     const filteredTodos = todos.filter((todo) => {
@@ -148,9 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filteredTodos.forEach((todo) => {
       const item = document.createElement("li");
+      const checkbox = document.createElement("input");
+      const textBlock = document.createElement("div");
+      const contentBlock = document.createElement("div");
+      const editIcon = document.createElement("img");
+      const deleteIcon = document.createElement("img");
+      const editBlock = document.createElement("div");
+
       item.className = "todo-item" + (todo.completed ? " completed" : "");
 
-      const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = todo.completed;
       checkbox.classList.add("custom-checkbox");
@@ -161,25 +168,20 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTodos();
       });
 
-      const textBlock = document.createElement("div");
       textBlock.innerHTML = `<span class="todo-date">${formatDate(
         todo.date
       )}</span><p class="todo-description">${todo.description}</p>`;
 
-      const contentBlock = document.createElement("div");
       contentBlock.classList.add("content-wrapper");
       contentBlock.appendChild(checkbox);
       contentBlock.appendChild(textBlock);
 
-      const editIcon = document.createElement("img");
       editIcon.src = "./icons/edit.svg";
       editIcon.classList.add("edit-icon");
 
-      const deleteIcon = document.createElement("img");
       deleteIcon.src = "./icons/garbage-svgrepo-com.svg";
       deleteIcon.classList.add("delete-icon");
 
-      const editBlock = document.createElement("div");
       editBlock.classList.add("edit-wrapper");
       editBlock.appendChild(editIcon);
       editBlock.appendChild(deleteIcon);
@@ -195,11 +197,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       editIcon.addEventListener("click", () => {
-        editingTodoId = todo.id; // переходим в режим редактирования
+        editingTodoId = todo.id;
         popup.querySelector(".submit-btn").textContent = "Сохранить";
 
         descriptionInput.value = todo.description;
-        dateInput._flatpickr.setDate(todo.date); // flatpickr.setDate
+        dateInput._flatpickr.setDate(todo.date);
         document.getElementById("reminder").checked = todo.reminder;
 
         popup.classList.remove("hidden");
